@@ -1,5 +1,6 @@
 package org.chrontax.musicstreaming.network
 
+import okhttp3.ResponseBody
 import org.chrontax.musicstreaming.data.Artist
 import org.chrontax.musicstreaming.data.NewArtist
 import org.chrontax.musicstreaming.data.NewRelease
@@ -51,4 +52,7 @@ interface MusicApi {
 
     @POST("/music/artist")
     suspend fun createArtist(artist: NewArtist): Uuid
+
+    @GET("/music/release/{id}/cover")
+    suspend fun getReleaseCover(@Path("id") id: Uuid): ResponseBody
 }

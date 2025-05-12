@@ -31,7 +31,7 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel = h
     var password by remember { mutableStateOf("") }
 
     if (loggedIn) {
-        navController.navigate(AppDestinations.SETTINGS_ROUTE) {
+        navController.navigate(AppDestinations.SEARCH_ROUTE) {
             popUpTo(AppDestinations.LOGIN_ROUTE) { inclusive = true }
         }
     }

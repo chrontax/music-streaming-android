@@ -13,6 +13,7 @@ import org.chrontax.musicstreaming.data.SettingsManager
 import org.chrontax.musicstreaming.network.AuthInterceptor
 import org.chrontax.musicstreaming.network.MusicApi
 import org.chrontax.musicstreaming.network.UserApi
+import org.chrontax.musicstreaming.network.moshi_adapters.UuidAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -26,6 +27,7 @@ object NetworkModule {
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
+            .add(UuidAdapter())
             .build()
     }
 

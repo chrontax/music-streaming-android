@@ -38,7 +38,7 @@ class LoginViewModel @Inject constructor(
                 }
 
                 is UserApiResult.Failure -> {
-                    _errorState.value = result.message ?: "An error occurred"
+                    _errorState.value = result.message
                 }
             }
         }
