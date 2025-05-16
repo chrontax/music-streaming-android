@@ -2,8 +2,11 @@ package org.chrontax.musicstreaming.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,23 +20,26 @@ import kotlinx.coroutines.runBlocking
 import java.net.MalformedURLException
 import java.net.URL
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(settingsViewModel: SettingsViewModel = hiltViewModel()) {
     var isUrlValid by remember { mutableStateOf(true) }
     var newBaseUrl by remember { mutableStateOf(runBlocking { settingsViewModel.baseUrl.first() }) }
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        OutlinedTextField(
-            value = newBaseUrl,
-            onValueChange = {
-                newBaseUrl = it
-                isUrlValid = isValidUrl(it)
-                if (isUrlValid)
-                    settingsViewModel.setBaseUrl(it)
-            },
-            label = { Text("Server URL") },
-            isError = !isUrlValid
-        )
+    Scaffold(topBar = { TopAppBar(title = {Text("Login")}) }) { padding ->
+        Column(modifier = Modifier.padding(padding)) {
+            OutlinedTextField(
+                value = newBaseUrl,
+                onValueChange = {
+                    newBaseUrl = it
+                    isUrlValid = isValidUrl(it)
+                    if (isUrlValid)
+                        settingsViewModel.setBaseUrl(it)
+                },
+                label = { Text("Server URL") },
+                isError = !isUrlValid
+            )
+        }
     }
 }
 
