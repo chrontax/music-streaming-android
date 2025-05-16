@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 lifecycleScope.launch {
                     settingsManager.tokenFlow.collect {
-                        if (it == null)
+                        val currentDestination = navController.currentDestination?.route ?: ""
+                        if (it == null && !(currentDestination == AppDestinations.LOGIN_ROUTE || currentDestination == AppDestinations.SETTINGS_ROUTE))
                             navController.navigate(AppDestinations.LOGIN_ROUTE)
                     }
                 }
