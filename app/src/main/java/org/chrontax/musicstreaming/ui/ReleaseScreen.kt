@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.chrontax.musicstreaming.data.Release
 import kotlin.uuid.Uuid
@@ -25,7 +26,7 @@ import kotlin.uuid.Uuid
 @Composable
 fun ReleaseScreen(
     releaseId: Uuid, // Accept releaseId as a Uuid
-    viewModel: ReleaseViewModel = viewModel() // Get the ViewModel
+    viewModel: ReleaseViewModel = hiltViewModel() // Get the ViewModel
 ) {
     val uiState = viewModel.uiState
 
